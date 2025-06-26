@@ -18,7 +18,6 @@
         :root {
             --brand-light: #F8F9FA; /* Slightly warmer than before for a softer feel */
             --brand-dark: #0D3E62;
-            --brand-accent: #EAB308; /* Yellow for the banner */
         }
         body {
             font-family: 'Heebo', sans-serif;
@@ -48,12 +47,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Popup Styles */
+        #popup-overlay.hidden, #popup-modal.hidden {
+            display: none;
+        }
+        #popup-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #popup-modal {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-brand-light">
 
     <!-- Header -->
-    <header id="header" class="bg-brand-light/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+    <header id="header" class="bg-brand-light/90 backdrop-blur-sm sticky top-0 z-40 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center">
                 <img src="Updated Circle SIGN Main File.jpg" alt="לוגו קראג'י דגים" class="h-10 md:h-12">
@@ -83,7 +93,11 @@
                 
                 <!-- Grand Opening Banner -->
                 <div class="bg-white/10 border border-white/20 rounded-lg px-8 py-4 mb-8 max-w-lg">
-                    <p class="heebo-bold text-lg md:text-xl">🎉 אירוע פתיחה חגיגי: 8.7.25 🎉</p>
+                     <p class="heebo-bold text-lg md:text-xl flex items-center justify-center gap-x-3">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5a.75.75 0 01.75-.75zM10 12.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5a.75.75 0 01.75-.75zM3.5 9.25a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5zM12.5 9.25a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5zM6.05 5.24a.75.75 0 00-1.06-1.06L2.5 6.68a.75.75 0 001.06 1.06l2.49-2.5zm8.94 8.94a.75.75 0 00-1.06-1.06l-2.5 2.49a.75.75 0 001.06 1.06l2.5-2.49zm-8.94 0a.75.75 0 001.06-1.06l-2.49-2.5a.75.75 0 00-1.06 1.06l2.49 2.5zM13.95 5.24a.75.75 0 001.06-1.06l-2.5-2.49a.75.75 0 00-1.06 1.06l2.5 2.49z" clip-rule="evenodd" /></svg>
+                        <span>אירוע פתיחה חגיגי: 8.7.25</span>
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5a.75.75 0 01.75-.75zM10 12.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5a.75.75 0 01.75-.75zM3.5 9.25a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5zM12.5 9.25a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5zM6.05 5.24a.75.75 0 00-1.06-1.06L2.5 6.68a.75.75 0 001.06 1.06l2.49-2.5zm8.94 8.94a.75.75 0 00-1.06-1.06l-2.5 2.49a.75.75 0 001.06 1.06l2.5-2.49zm-8.94 0a.75.75 0 001.06-1.06l-2.49-2.5a.75.75 0 00-1.06 1.06l2.49 2.5zM13.95 5.24a.75.75 0 001.06-1.06l-2.5-2.49a.75.75 0 00-1.06 1.06l2.5 2.49z" clip-rule="evenodd" /></svg>
+                    </p>
                     <p class="heebo-light text-base md:text-lg opacity-90 mt-1">מזמינים אתכם לחגוג איתנו עם דגה טרייה, הפתעות והטבות מיוחדות לרגל הפתיחה!</p>
                 </div>
 
@@ -228,6 +242,18 @@
         </div>
     </footer>
 
+    <!-- Opening Popup -->
+    <div id="popup-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50"></div>
+    <div id="popup-modal" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-11/12 max-w-md bg-brand-light p-6 md:p-8 rounded-lg shadow-2xl text-center">
+        <button id="popup-close" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <img src="Updated Circle SIGN Main File.jpg" alt="סמל עגול של קראג'י דגים" class="w-24 h-24 mx-auto mb-4">
+        <h2 class="text-2xl md:text-3xl heebo-bold text-brand-dark mb-2">0הפתיחה החגיגית ב-8/07/25!</h2>
+        <p class="text-base heebo-light text-gray-600 mb-6">אנחנו מתרגשים להזמין אתכם לאירוע הפתיחה שלנו! בואו לחגוג איתנו עם דגה טרייה, הפתעות והטבות מיוחדות</p>
+        <a href="#contact" id="popup-cta-button" class="w-full heebo-bold text-lg bg-brand-dark text-brand-light px-10 py-3 rounded-full hover:bg-opacity-90 transition-colors">איך מגיעים?</a>
+    </div>
+
     <script>
         // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -251,6 +277,49 @@
 
         // --- Dynamic Year in Footer ---
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- Opening Popup Logic ---
+        window.addEventListener('load', () => {
+            const popupOverlay = document.getElementById('popup-overlay');
+            const popupModal = document.getElementById('popup-modal');
+            const popupCloseBtn = document.getElementById('popup-close');
+            const popupCtaBtn = document.getElementById('popup-cta-button');
+            const popupShown = sessionStorage.getItem('karajiPopupShown');
+
+            const showPopup = () => {
+                popupOverlay.classList.remove('hidden');
+                popupModal.classList.remove('hidden');
+                // Use setTimeout to allow the elements to be displayed before adding transition classes
+                setTimeout(() => {
+                    popupOverlay.style.opacity = '1';
+                    popupModal.style.opacity = '1';
+                    popupModal.style.transform = 'translate(-50%, -50%) scale(1)';
+                }, 10);
+            };
+
+            const hidePopup = () => {
+                popupOverlay.style.opacity = '0';
+                popupModal.style.opacity = '0';
+                popupModal.style.transform = 'translate(-50%, -50%) scale(0.95)';
+                setTimeout(() => {
+                    popupOverlay.classList.add('hidden');
+                    popupModal.classList.add('hidden');
+                }, 300); // Match transition duration
+                sessionStorage.setItem('karajiPopupShown', 'true');
+            };
+
+            if (!popupShown) {
+                 // Set initial styles for animation
+                popupOverlay.style.opacity = '0';
+                popupModal.style.opacity = '0';
+                popupModal.style.transform = 'translate(-50%, -50%) scale(0.95)';
+                setTimeout(showPopup, 1000); // Delay popup by 1 second
+            }
+
+            popupCloseBtn.addEventListener('click', hidePopup);
+            popupCtaBtn.addEventListener('click', hidePopup);
+            popupOverlay.addEventListener('click', hidePopup);
+        });
     </script>
 
 </body>
